@@ -1,0 +1,20 @@
+com/xuexiang/flutter_xupdate/FlutterXUpdatePlugin.java
+ com.xuexiang.flutter_xupdate.FlutterXUpdatePlugin
+ com.xuexiang.flutter_xupdate.FlutterXUpdatePlugin$1
+com/xuexiang/flutter_xupdate/FlutterUpdatePrompter.java
+ com.xuexiang.flutter_xupdate.FlutterUpdatePrompter
+com/xuexiang/flutter_xupdate/OKHttpUpdateHttpService.java
+ com.xuexiang.flutter_xupdate.OKHttpUpdateHttpService
+ com.xuexiang.flutter_xupdate.OKHttpUpdateHttpService$1
+ com.xuexiang.flutter_xupdate.OKHttpUpdateHttpService$2
+ com.xuexiang.flutter_xupdate.OKHttpUpdateHttpService$3
+com/xuexiang/flutter_xupdate/RetryUpdateTipDialog.java
+ com.xuexiang.flutter_xupdate.RetryUpdateTipDialog
+ com.xuexiang.flutter_xupdate.RetryUpdateTipDialog$1
+com/xuexiang/flutter_xupdate/RetryUpdateDownloader.java
+ com.xuexiang.flutter_xupdate.RetryUpdateDownloader
+com/xuexiang/flutter_xupdate/FlutterCustomUpdateParser.java
+ com.xuexiang.flutter_xupdate.FlutterCustomUpdateParser
+ com.xuexiang.flutter_xupdate.FlutterCustomUpdateParser$1
+com/xuexiang/flutter_xupdate/BuildConfig.java
+ com.xuexiang.flutter_xupdate.BuildConfig

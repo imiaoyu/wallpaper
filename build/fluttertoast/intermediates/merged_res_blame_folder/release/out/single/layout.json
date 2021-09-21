@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Volumes/Mac/Flutter/wallpaper/build/fluttertoast/intermediates/res/merged/release/layout/notification_template_part_time.xml",
+        "source": "/Users/imiaoyu/.gradle/caches/transforms-2/files-2.1/d67cd79abd1ca209502f51c69d23182b/core-1.1.0/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Volumes/Mac/Flutter/wallpaper/build/fluttertoast/intermediates/res/merged/release/layout/notification_template_icon_group.xml",
+        "source": "/Users/imiaoyu/.gradle/caches/transforms-2/files-2.1/d67cd79abd1ca209502f51c69d23182b/core-1.1.0/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Volumes/Mac/Flutter/wallpaper/build/fluttertoast/intermediates/res/merged/release/layout/notification_action.xml",
+        "source": "/Users/imiaoyu/.gradle/caches/transforms-2/files-2.1/d67cd79abd1ca209502f51c69d23182b/core-1.1.0/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Volumes/Mac/Flutter/wallpaper/build/fluttertoast/intermediates/res/merged/release/layout/notification_action_tombstone.xml",
+        "source": "/Users/imiaoyu/.gradle/caches/transforms-2/files-2.1/d67cd79abd1ca209502f51c69d23182b/core-1.1.0/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Volumes/Mac/Flutter/wallpaper/build/fluttertoast/intermediates/res/merged/release/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/imiaoyu/.gradle/caches/transforms-2/files-2.1/d67cd79abd1ca209502f51c69d23182b/core-1.1.0/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Volumes/Mac/Flutter/wallpaper/build/fluttertoast/intermediates/res/merged/release/layout/toast_custom.xml",
+        "source": "/Users/imiaoyu/.pub-cache/hosted/pub.flutter-io.cn/fluttertoast-8.0.8/android/src/main/res/layout/toast_custom.xml"
+    },
+    {
+        "merged": "/Volumes/Mac/Flutter/wallpaper/build/fluttertoast/intermediates/res/merged/release/layout/custom_dialog.xml",
+        "source": "/Users/imiaoyu/.gradle/caches/transforms-2/files-2.1/d67cd79abd1ca209502f51c69d23182b/core-1.1.0/res/layout/custom_dialog.xml"
+    }
+]

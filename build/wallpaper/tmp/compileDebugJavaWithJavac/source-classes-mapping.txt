@@ -1,0 +1,7 @@
+com/prateektimer/wallpaper/WallpaperHelper.java
+ com.prateektimer.wallpaper.WallpaperHelper
+ com.prateektimer.wallpaper.WallpaperHelper$RequestSizeOptions
+com/prateektimer/wallpaper/WallpaperPlugin.java
+ com.prateektimer.wallpaper.WallpaperPlugin
+com/prateektimer/wallpaper/BuildConfig.java
+ com.prateektimer.wallpaper.BuildConfig

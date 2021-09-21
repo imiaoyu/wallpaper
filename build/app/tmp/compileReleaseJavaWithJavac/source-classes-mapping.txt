@@ -1,0 +1,6 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/zhiying/wallpaper/BuildConfig.java
+ com.zhiying.wallpaper.BuildConfig
+com/example/test/MainActivity.java
+ com.zhiying.wallpaper.MainActivity
