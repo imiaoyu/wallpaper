@@ -1,3 +1,4 @@
+//图片分类数据
 List item =[
         {
           "count": 50741,
@@ -21,7 +22,7 @@ List item =[
           "rname": "动漫",
           "cover_temp": "56a221c969401b3f4aa6700a",
           "name": "动漫",
-          "cover": "https://z3.ax1x.com/2021/09/14/4k2k0s.png",
+          "cover": "https://www.hualigs.cn/image/6156f1077cda1.jpg",
           "rank": 4,
           "id": "4e4d610cdf714d2966000003",
           "icover": "5880889ae7bce7755f3607d9",
@@ -53,7 +54,7 @@ List item =[
           "rname": "游戏",
           "cover_temp": "569f40fa69401b26c648eb87",
           "name": "游戏",
-          "cover": "https://z3.ax1x.com/2021/09/14/4kRgaR.jpg",
+          "cover": "https://www.hualigs.cn/image/6156f1b9ec15a.jpg",
           "rank": 15,
           "filter": [],
           "sn": 4,
@@ -219,3 +220,6 @@ List item =[
           "picasso_cover": "6136cb07e7bce775ffcaeb2f"
         }
 ];
+
+//话题分类数据 用于创建帖子所选话题
+var conversation_item;

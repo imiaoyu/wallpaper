@@ -1,4 +1,0 @@
-#Tue Sep 21 16:25:40 CST 2021
-base.0=/Volumes/Mac/Flutter/wallpaper/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

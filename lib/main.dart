@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:test/page/bar.dart';
 import 'package:test/page/home.dart';
@@ -24,6 +23,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => Home(),
         '/images': (context) => Images(),
         '/detailed': (context,{arguments}) => FullScreenImagePage(imageurl: arguments['imageurl']),
-      },
+      }
     );
   }
 }
+

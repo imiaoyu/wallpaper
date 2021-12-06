@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:test/http/a.dart';
 import 'package:test/page/fication_view.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class classification extends StatefulWidget {
   const classification({Key? key}) : super(key: key);
@@ -64,19 +65,23 @@ class _classificationState extends State<classification> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(LineAwesomeIcons.angle_left),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Text('分类',
           style: TextStyle(
             fontSize: 18,
           ),
         ),
-        backgroundColor: Colors.black87,
+        backgroundColor: Color.fromARGB(255, 207, 211, 217),
         centerTitle:true,
       ),
       body: ScrollConfiguration(
         behavior: CusBehavior(),
         child: Container(
           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-          color: Colors.black87,
+          // color: Color.fromARGB(255, 165, 177, 206),
           child: GridView.builder(
             gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(//SliverGridDelegateWithFixedCrossAxisCount可以直接指定每行（列）显示多少个Item   SliverGridDelegateWithMaxCrossAxisExtent会根据GridView的宽度和你设置的每个的宽度来自动计算没行显示多少个Item
               crossAxisSpacing:20.0,
@@ -165,7 +170,7 @@ class _classificationState extends State<classification> {
 
   Widget loading() {
     return Container(
-        color: Colors.black87,
+        color: Color.fromARGB(255, 207, 211, 217),
         child: Padding(
             padding: const EdgeInsets.all(50.0),
             child: SpinKitRotatingCircle(

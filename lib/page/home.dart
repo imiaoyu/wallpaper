@@ -5,14 +5,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'package:test/http/a.dart';
+import 'package:test/http/conversation.dart';
+import 'package:test/http/http_url.dart';
 import 'package:test/model/toast.dart';
+import 'package:test/page/copywriting.dart';
 import 'package:test/page/fications.dart';
+import 'package:test/page/images.dart';
 import 'full_screenimagepage.dart';
 import 'package:test/http/entity.dart';
 import 'package:test/page/Daily_signature.dart';
 import 'package:test/model/http.dart';
 import 'package:test/page/images_view.dart';
-
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 void main() => runApp(Home());
 
@@ -69,6 +74,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //精选话题
+  var conversation_item;
+  var conversation_itemCount;
+  void conversation() async {
+    Conversation conversation = await Http.conversation('$http_url/api/conversation');
+    setState(() {
+      conversation_itemCount = conversation.data.length;
+      conversation_item = conversation.data;
+    });
+    // print(conversation_item);
+  }
+
+
 
   @override
   void initState() {
@@ -78,6 +96,7 @@ class _HomePageState extends State<HomePage> {
     Daily_signature_list();
     recommend();
     List();
+    conversation();
   }
 
   @override
@@ -96,7 +115,7 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.only(top: 0),
           children: <Widget>[
             Container(
-              color: Colors.black87,
+              // color: Colors.black87,
               child: Column(
                 children: <Widget>[
                   //日签
@@ -112,30 +131,52 @@ class _HomePageState extends State<HomePage> {
                         height: 120,
                         // color: Colors.black87,
                       ),
+
                       Positioned(
-                        left: 25.0,
+                        left: 10.0,
                         top: 55.0,
-                        child: Text("${DateTime.now().day}",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 50,
-                            fontFamily: 'Roboto-Black',
-                            fontWeight: FontWeight.bold,
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Text("${DateTime.now().day}",
+                                textAlign:TextAlign.end,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 50,
+                                  fontFamily: 'Roboto-Black',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              Text("   Day",
+                                textAlign:TextAlign.end,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: 'Roboto-Black',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                            ],
                           ),
-                        ),
+                        )
                       ),
-                      Positioned(
-                        left: 90.0,
-                        top: 83.0,
-                        child: Text("/ ${DateTime.now().year}",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'Roboto-Black',
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                      // Positioned(
+                      //   left: 95.0,
+                      //   top: 82.0,
+                      //   //${DateTime.now().year}
+                      //   child: Text("  Day",
+                      //     style: TextStyle(
+                      //       color: Colors.white,
+                      //       fontSize: 18,
+                      //       fontFamily: 'Roboto-Black',
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   ),
+                      // ),
                       Positioned(
                           right: 25.0,
                           top: 75.0,
@@ -200,16 +241,17 @@ class _HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   Container(
                                     child: Icon(
-                                      Icons.dashboard,
-                                      size: 40,
-                                      color: Colors.redAccent,
+                                      LineAwesomeIcons.shapes,
+                                      // Icons.dashboard,
+                                      size: 35,
+                                      color: Color.fromARGB(255, 165, 177, 206),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
                                       '分类',
                                       style: TextStyle(
-                                        color: Colors.white60,
+                                        color: Color.fromARGB(255, 165, 177, 206),
                                       ),
                                     ),
                                   )
@@ -219,7 +261,14 @@ class _HomePageState extends State<HomePage> {
                             Spacer(flex: 1,),
                             InkWell(
                               onTap: (){
-                                SQToast.show('等待后面开放');
+                                Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                    builder: (context) {
+                                      return new Images();
+                                    },
+                                  ),
+                                );
                               },
                               // color: Colors.pink,
                               child: Column(
@@ -227,16 +276,16 @@ class _HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   Container(
                                     child: Icon(
-                                      Icons.leaderboard,
-                                      size: 40,
-                                      color: Colors.blue[300],
+                                      LineAwesomeIcons.chalkboard,
+                                      size: 35,
+                                      color: Color.fromARGB(255, 165, 177, 206),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
-                                      '排行榜',
+                                      '热门',
                                       style: TextStyle(
-                                          color: Colors.white60
+                                        color: Color.fromARGB(255, 165, 177, 206),
                                       ),
                                     ),
                                   )
@@ -246,7 +295,7 @@ class _HomePageState extends State<HomePage> {
                             Spacer(flex: 1,),
                             InkWell(
                               onTap: (){
-                                SQToast.show('等待后面开放');
+                                SQToast.show('等待开放');
                               },
                               // color: Colors.pink,
                               child: Column(
@@ -254,16 +303,16 @@ class _HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   Container(
                                     child: Icon(
-                                      Icons.colorize,
-                                      size: 40,
-                                      color: Colors.pinkAccent,
+                                      LineAwesomeIcons.pen,
+                                      size: 35,
+                                      color: Color.fromARGB(255, 165, 177, 206),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
-                                      '色彩',
+                                      '话题',
                                       style: TextStyle(
-                                          color: Colors.white60
+                                        color: Color.fromARGB(255, 165, 177, 206),
                                       ),
                                     ),
                                   )
@@ -273,7 +322,7 @@ class _HomePageState extends State<HomePage> {
                             Spacer(flex: 1,),
                             InkWell(
                               onTap: (){
-                                SQToast.show('等待后面开放');
+                                SQToast.show('等待开放');
                               },
                               // color: Colors.pink,
                               child: Column(
@@ -281,16 +330,16 @@ class _HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   Container(
                                     child: Icon(
-                                      Icons.wallpaper,
-                                      size: 40,
-                                      color: Colors.greenAccent,
+                                      LineAwesomeIcons.certificate,
+                                      size: 35,
+                                      color: Color.fromARGB(255, 165, 177, 206),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
-                                      '动态壁纸',
+                                      '专题',
                                       style: TextStyle(
-                                          color: Colors.white60
+                                        color: Color.fromARGB(255, 165, 177, 206),
                                       ),
                                     ),
                                   )
@@ -317,16 +366,16 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: Row(
                                       children: <Widget>[
+                                        // Container(
+                                        //   child: Icon(
+                                        //     Icons.gesture,
+                                        //     color: Colors.yellowAccent,
+                                        //   ),
+                                        // ),
                                         Container(
-                                          child: Icon(
-                                            Icons.gesture,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Text('最新推荐',
+                                          child: Text('今日精选',
                                             style: TextStyle(
-                                                color: Colors.white,
+                                                // color: Colors.white,
                                                 fontSize: 18
                                             ),
                                           ),
@@ -349,17 +398,18 @@ class _HomePageState extends State<HomePage> {
                                       child: Row(
                                         children: <Widget>[
                                           Container(
-                                            child: Text('全部推荐',
+                                            child: Text('全部精选',
                                               style: TextStyle(
-                                                  color: Colors.yellowAccent,
-                                                  fontSize: 18
+                                                  color: Color.fromARGB(255, 165, 177, 206),
+                                                  fontSize: 16
                                               ),
                                             ),
                                           ),
                                           Container(
                                             child: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.yellowAccent,
+                                              LineAwesomeIcons.angle_right,
+                                              color: Color.fromARGB(255, 165, 177, 206),
+                                              size: 20,
                                             ),
                                           )
                                         ],
@@ -376,7 +426,7 @@ class _HomePageState extends State<HomePage> {
                                   //Row Container嵌套ListView要用 Expanded 和 SizedBox 包裹 不然会报错
                                   Expanded(
                                     child: SizedBox(
-                                        height: 250.0,
+                                        height: 230.0,
                                         child: ListView.builder(
                                           scrollDirection: Axis.horizontal,
                                           shrinkWrap: true,
@@ -400,6 +450,8 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
+
+                      //今日推荐
                       Container(
                         padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                         // height: 300.0,
@@ -416,16 +468,16 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     child: Row(
                                       children: <Widget>[
+                                        // Container(
+                                        //   child: Icon(
+                                        //     Icons.gesture,
+                                        //     color: Colors.yellowAccent,
+                                        //   ),
+                                        // ),
                                         Container(
-                                          child: Icon(
-                                            Icons.gesture,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Text('最新榜单',
+                                          child: Text('今日推荐',
                                             style: TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 fontSize: 18
                                             ),
                                           ),
@@ -447,17 +499,18 @@ class _HomePageState extends State<HomePage> {
                                     child: Row(
                                       children: <Widget>[
                                         Container(
-                                          child: Text('全部榜单',
+                                          child: Text('全部推荐',
                                             style: TextStyle(
-                                                color: Colors.yellowAccent,
-                                                fontSize: 18
+                                                color: Color.fromARGB(255, 165, 177, 206),
+                                                fontSize: 16
                                             ),
                                           ),
                                         ),
                                         Container(
                                           child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: Colors.yellowAccent,
+                                            LineAwesomeIcons.angle_right,
+                                            color: Color.fromARGB(255, 165, 177, 206),
+                                            size: 20,
                                           ),
                                         )
                                       ],
@@ -472,7 +525,7 @@ class _HomePageState extends State<HomePage> {
                                 children:<Widget>[
                                   Expanded(
                                     child: SizedBox(
-                                        height: 250.0,
+                                        height: 230.0,
                                         child: ListView.builder(
                                           scrollDirection: Axis.horizontal,
                                           shrinkWrap: true,
@@ -480,6 +533,103 @@ class _HomePageState extends State<HomePage> {
                                           itemBuilder: (context,i){
                                             if(list_item != null && list_itemCount!=0){
                                               return ImagesListCard(list_item[i]);
+                                            }else{
+                                              return loading();
+                                              //下面这个行代码乱写的
+                                              // return itemCount;
+                                            }
+                                          },
+                                        )
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      //精选话题
+                      Container(
+                        padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        // height: 300.0,
+                        // color: Colors.black87,
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                              height:30,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    child: Row(
+                                      children: <Widget>[
+                                        // Container(
+                                        //   child: Icon(
+                                        //     Icons.gesture,
+                                        //     color: Colors.yellowAccent,
+                                        //   ),
+                                        // ),
+                                        Container(
+                                          child: Text('精选话题',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap:(){
+                                      Navigator.push(
+                                        context,
+                                        new MaterialPageRoute(
+                                          builder: (context) {
+                                            return new Images_view(image_list: list_item,title_bar:'全部专题',image_list_count:list_itemCount);
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: <Widget>[
+                                        Container(
+                                          child: Text('全部话题',
+                                            style: TextStyle(
+                                                color: Color.fromARGB(255, 165, 177, 206),
+                                                fontSize: 16
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Icon(
+                                            LineAwesomeIcons.angle_right,
+                                            color: Color.fromARGB(255, 165, 177, 206),
+                                            size: 20,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                              child: new Row(
+                                children:<Widget>[
+                                  Expanded(
+                                    child: SizedBox(
+                                        height: 140.0,
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          itemCount: 6,
+                                          itemBuilder: (context,i){
+                                            if(conversation_item != null && recommend_itemCount!=0){
+                                              return ImagesListCards(conversation_item[i]);
                                             }else{
                                               return loading();
                                               //下面这个行代码乱写的
@@ -521,6 +671,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //今日精选/推荐 widget
   Widget ImagesListCard(index) {
     String imgPath = index.thumb;
     // String imgPaths = item[index].preview;
@@ -568,7 +719,7 @@ class _HomePageState extends State<HomePage> {
                     child: new Hero(
                         tag: imgPath,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
                               imageUrl: imgPath,
                               fit: BoxFit.cover,
@@ -612,10 +763,109 @@ class _HomePageState extends State<HomePage> {
         )
     );
   }
+
+  //精选专题 widget
+  Widget ImagesListCards(index) {
+    String imgPath = index.img;
+    String namePath = index.title;
+    String introductionPath = index.introduction;
+    // String imgPaths = item[index].preview;
+    var imgPaths = index;
+    return new Material(
+      // elevation: 8.0,
+        color: Color(0x00000000),
+        borderRadius: new BorderRadius.all(
+          new Radius.circular(5.0),
+        ),
+        child:Container(
+          margin: EdgeInsets.fromLTRB(0, 0,0, 0),
+          child: new InkWell(
+            onTap: () {
+
+              // print(imgPaths.title);
+
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) {
+                    return new Copywriting(copywriting: imgPaths);
+                  },
+                ),
+              );
+
+              // Navigator.of(context).pushNamed('/detailed',arguments:{
+              //   'imageurl':imgPaths,
+              // });
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                     Container(
+                       // width:120,
+                       // height: 100,
+                       padding: EdgeInsets.fromLTRB(10,0,10,0,),
+                       // margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                       child: Column(
+                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         mainAxisSize: MainAxisSize.max,
+                         children: <Widget>[
+                           new Container(
+                             decoration: BoxDecoration(
+                               boxShadow: [//阴影效果
+                                 BoxShadow(
+                                   offset: Offset(4, 3),//阴影在X轴和Y轴上的偏移
+                                   color: Colors.black26,//阴影颜色
+                                   blurRadius: 1.0 ,//阴影程v度
+                                   spreadRadius: 1, //阴影扩散的程度 取值可以正数,也可以是负数
+                                 ),
+                               ],
+                               // color: Colors.blueGrey,
+                               borderRadius: BorderRadius.circular(8.0),
+                             ),
+                             // color: Colors.red,
+                             // height:100,
+                             child: Hero(
+                                 tag: imgPath,
+                                 child: ClipRRect(
+                                   borderRadius: BorderRadius.circular(8),
+                                   child: CachedNetworkImage(
+                                     height: 100,
+                                     width: 100,
+                                     imageUrl: imgPath,
+                                     fit: BoxFit.cover,
+                                     errorWidget: (context, url, error) => Icon(Icons.error),
+                                   ),
+                                 )
+                             ),
+                           ),
+                           Container(
+                             padding: EdgeInsets.only(top: 5),
+                             height: 40,
+                             child: Text('$namePath',
+                               style: TextStyle(
+                                 fontSize: 12,
+                                 color: Colors.grey
+                               ),
+                             ),
+                           )
+
+                         ],
+                     ),
+                     )
+              ]
+            ),
+          ),
+        )
+    );
+  }
+
+
   Widget loading() {
     return new Material(
         child: Container(
-          color: Colors.black87,
+          color: Color.fromARGB(255, 165, 177, 206),
             padding: const EdgeInsets.all(50.0),
             child: SpinKitRotatingCircle(
               color: Colors.yellow[300],

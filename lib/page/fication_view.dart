@@ -11,6 +11,7 @@ import 'package:image_downloader/image_downloader.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Classification_view extends StatefulWidget {
   var  id;
@@ -71,22 +72,26 @@ class _Classification_view extends State<Classification_view> {
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(LineAwesomeIcons.angle_left),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           title: Text(widget.name,
             style: TextStyle(
               fontSize: 16,
             ),
           ),
-          backgroundColor: Colors.black87,
+          backgroundColor: Color.fromARGB(255, 207, 211, 217),
           // backgroundColor: colors.isNotEmpty ? colors[0].color: Theme.of(context).primaryColor,
           centerTitle: true,
         ),
         body: Container(
           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-          color: Colors.black87,
+          // color: Colors.black87,
           child: GridView.builder(
             gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount( //SliverGridDelegateWithFixedCrossAxisCount可以直接指定每行（列）显示多少个Item   SliverGridDelegateWithMaxCrossAxisExtent会根据GridView的宽度和你设置的每个的宽度来自动计算没行显示多少个Item
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 5.0,
+              mainAxisSpacing: 5.0,
               crossAxisCount: 3,
               childAspectRatio: 0.6,
             ),
@@ -129,12 +134,12 @@ class _Classification_view extends State<Classification_view> {
               ),
             ),
         // placeholder: (context, url) =>
-        //      Image.asset('assets/wallfy.png'),
+        //      Image.asset('images/wallfy.png'),
         //有网情况:网络下载图片缓存到本地,当第二次打开时,不下载网络图片,使用缓存到本地的图片,若没有网,没有缓存到本地图片,则使用默认图片.
         //CachedNetworkImage
         placeholder: (context, url) {
           return SpinKitRotatingCircle(
-            color: Colors.yellow[100],
+            color: Color.fromARGB(255, 165, 177, 206),
             size: 20.0,
           );
         },
@@ -152,7 +157,7 @@ class _Classification_view extends State<Classification_view> {
         child: Padding(
             padding: const EdgeInsets.all(50.0),
             child: SpinKitRotatingCircle(
-              color: Colors.yellow[100],
+              color: Color.fromARGB(255, 165, 177, 206),
               size: 20.0,
             )
         )

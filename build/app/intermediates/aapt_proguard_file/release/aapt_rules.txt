@@ -1,3 +1,0 @@
--keep class androidx.core.app.CoreComponentFactory { <init>(); }
--keep class com.squareup.picasso.PicassoProvider { <init>(); }
--keep class com.zhiying.wallpaper.MainActivity { <init>(); }

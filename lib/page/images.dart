@@ -10,6 +10,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:test/http/entity.dart';
 import 'package:test/model/color.dart';
 import 'package:test/model/toast.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+/*主页热门*/
 
 class Images extends StatefulWidget{
   @override
@@ -27,7 +29,7 @@ class _ImagesState extends State<Images>{
     //   ),
     //   home: ImagesPage(title: '图酷'),
     // );
-    return ImagesPage(title: '图推');
+    return ImagesPage(title: '热门');
   }
 
 }
@@ -92,8 +94,12 @@ class _ImagesPageState extends State<ImagesPage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(LineAwesomeIcons.angle_left),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Text(widget.title),
-        backgroundColor: Colors.blue[500],
+        backgroundColor: Color.fromARGB(255, 207, 211, 217),
         centerTitle:true,
       ),
       body: RefreshIndicator(
@@ -115,7 +121,7 @@ class _ImagesPageState extends State<ImagesPage> with SingleTickerProviderStateM
           },
           //  staggeredTileBuilder: (index) => new StaggeredTile.fit(2),
           staggeredTileBuilder: (int index) =>
-          new StaggeredTile.count(2, index == 0 ? 2.5 : 3),    //
+          new StaggeredTile.count(2, index.isEven ? 2.5 : 2),    //
           mainAxisSpacing: 8.0,
           crossAxisSpacing: 8.0,
         ),
@@ -158,7 +164,7 @@ class _ImagesPageState extends State<ImagesPage> with SingleTickerProviderStateM
             child: new Hero(
                 tag: imgPath,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(8),
                   child:
                   // Image(
                   //   image: NetworkImage(imgPath),
@@ -183,7 +189,7 @@ class _ImagesPageState extends State<ImagesPage> with SingleTickerProviderStateM
                       //CachedNetworkImage
                       placeholder: (context,url){
                         return  SpinKitRotatingCircle(
-                          color: Colors.blue,
+                          color: Color.fromARGB(255, 165, 177, 206),
                           size: 20.0,
                         );
                       },
@@ -202,11 +208,11 @@ class _ImagesPageState extends State<ImagesPage> with SingleTickerProviderStateM
   //以下代码废弃，因为会执行两次请求前的加载动画以及缓存图片后也有加载动画
   Widget loading() {
     return Container(
-        color: Colors.black87,
+        color: Color.fromARGB(255, 207, 211, 217),
         child: Padding(
             padding: const EdgeInsets.all(50.0),
             child: SpinKitRotatingCircle(
-              color: Colors.yellow[100],
+              color: Color.fromARGB(255, 165, 177, 206),
               size: 20.0,
             )
         )
