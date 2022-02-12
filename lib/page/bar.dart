@@ -7,6 +7,7 @@ import 'package:test/page/bar.dart';
 import 'package:test/page/contribution.dart';
 import 'package:test/page/copywriting.dart';
 import 'package:test/page/home.dart';
+import 'package:test/page/home/special.dart';
 import 'package:test/page/images.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:test/page/my.dart';

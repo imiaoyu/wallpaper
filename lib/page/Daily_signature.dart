@@ -14,11 +14,15 @@ class Daily_signature extends StatefulWidget {
 class _Daily_signatureState extends State<Daily_signature> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
+  var width;
+  var height;
+
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
     print(DateTime.now().day);
+
   }
 
   @override
@@ -29,6 +33,11 @@ class _Daily_signatureState extends State<Daily_signature> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
+    //屏幕高度宽度
+    final size = MediaQuery.of(context).size;
+     width = size.width;
+     height = size.height;
+
     return Scaffold(
       body: ConstrainedBox(
         constraints: BoxConstraints.expand(),
@@ -46,7 +55,7 @@ class _Daily_signatureState extends State<Daily_signature> with SingleTickerProv
               // height: 120,
             ),
             Positioned(
-                left: 70,
+                left: width/10,
                 top: 100,
                 child: Container(
                   height: 70,
@@ -57,30 +66,30 @@ class _Daily_signatureState extends State<Daily_signature> with SingleTickerProv
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 70,
-                          fontFamily: 'Roboto-Black',
+                          // fontFamily: 'Roboto-Black',
                           fontWeight: FontWeight.bold,
                           shadows: <Shadow>[
-                            Shadow(
-                              offset: Offset(15.0, 15.0),
-                              blurRadius: 30.0,
-                              color: Colors.black12,
-                            ),
+                            // Shadow(
+                            //   offset: Offset(15.0, 15.0),
+                            //   blurRadius: 30.0,
+                            //   color: Colors.black12,
+                            // ),
                           ],
                         ),
                       ),
 
-                      Text('   Day',
+                      Text(' Day',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 28,
-                          fontFamily: 'Roboto-Black',
+                          // fontFamily: 'Roboto-Black',
                           fontWeight: FontWeight.bold,
                           shadows: <Shadow>[
-                            Shadow(
-                              offset: Offset(15.0, 15.0),
-                              blurRadius: 30.0,
-                              color: Colors.black12,
-                            ),
+                            // Shadow(
+                            //   offset: Offset(15.0, 15.0),
+                            //   blurRadius: 30.0,
+                            //   color: Colors.black12,
+                            // ),
                           ],
                         ),
                       ),
@@ -123,7 +132,7 @@ class _Daily_signatureState extends State<Daily_signature> with SingleTickerProv
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
-                          fontFamily: 'Roboto-Black',
+                          // fontFamily: 'Roboto-Black',
                           // fontWeight: FontWeight.bold,
                         ),
                       ),

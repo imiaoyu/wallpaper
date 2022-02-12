@@ -13,7 +13,9 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:test/page/article_edit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/*话题*/
+import 'package:test/model/text_view.dart';
+
+/*话题文章*/
 
 class Copywriting extends StatefulWidget {
 
@@ -35,7 +37,9 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
   late TabController _tabController;
 
   //如果数据不存在就隐藏
-  late bool visible;
+  late bool imgvisible; //图片
+  late bool titlevisible; //标题
+  late bool contentvisible; //内容
 
   //帖子
   var article_item;
@@ -220,7 +224,7 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
               //展开的高度
               expandedHeight: height/2.8,
                 //背景颜色
-                backgroundColor: Color.fromARGB(255, 43, 44, 75),
+                backgroundColor: Colors.blueGrey,
              //可折叠隐藏的部分
              flexibleSpace: FlexibleSpaceBar(
                background: Container(
@@ -302,7 +306,7 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
                    Container(
                      // height: 300.0,
                      decoration: BoxDecoration(
-                         color: Colors.black,
+                         color: Colors.black87,
                          gradient: LinearGradient(
                              begin: FractionalOffset.topCenter,
                              end: FractionalOffset.bottomCenter,
@@ -311,20 +315,20 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
                                Colors.black87,
                              ],
                              stops: [
-                               0.2,
-                               0.8
+                               0.1,
+                               0.9
                              ])),
                    )
                  ]),
                )
              ),
+              shadowColor: Colors.blueGrey,
               bottom: TabBar(
                 indicatorWeight: 3.0,
 
                 // tab标题大小
                 // unselectedLabelStyle: TextStyle(fontSize: 14), // 未选择样式
                 // labelStyle: TextStyle( fontSize: 16,height: 2), // 选择的样式
-
                 labelColor: Color.fromARGB(255, 165, 177, 206),
                 indicatorColor: Color.fromARGB(255, 165, 177, 206),
                 unselectedLabelColor: Color.fromARGB(255, 207, 211, 217),
@@ -365,7 +369,7 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
       ),
     ),
         Center(
-            child: Text("这是推荐的内容")
+            child: Text("暂无最新图集")
         ),
         // Center(
         //     child: Text("这是关注的内容")
@@ -475,16 +479,33 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
     //文章
     var imgPath = index.img; //图片
     List img =  jsonDecode(imgPath);
+    // print(img == null);
+    // print(img);
     //如果图片存在则显示，不然就隐藏
-    if(img.length != 0){
-        visible = false;
+    if(img[0] != ''){
+        imgvisible = false;
     }else{
-        visible = true;
+        imgvisible = true;
     }
-
 
     String titlePath = index.title; //标题
     String contentPath = index.content; //内容
+
+    if(titlePath != ''){
+      titlevisible = false;
+    }else{
+      titlevisible = true;
+    }
+
+
+    if(contentPath != ''){
+      contentvisible = false;
+    }else{
+      contentvisible = true;
+    }
+
+
+
     String favsPath = index.favs; //喜欢(收藏)
     String rankPath = index.rank; //点赞(点赞)
     String concernsPath = index.rank; //浏览(关注)总数
@@ -513,7 +534,7 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
         children: <Widget>[
           //用户信息
           Container(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 10,bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -558,36 +579,57 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
             ),
           ),
           //文案文字内容
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            // color: Colors.red,
-            alignment:Alignment.bottomLeft,
-            // height: 20,
-            child: Text(
+          //标题
+          Offstage(
+            offstage: titlevisible,
+            child: Container(
+              // margin: EdgeInsets.only(top: 20),
+              // color: Colors.red,
+              alignment:Alignment.bottomLeft,
+              // height: 20,
+              child: Text(
                 titlePath,
-              textAlign:TextAlign.left,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                textAlign:TextAlign.left,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
-          Container(
-            // color: Colors.red,
-            alignment:Alignment.bottomLeft,
-            // height: 20,
-            child: Text(
-              contentPath,
-              textAlign:TextAlign.left,
-              style: TextStyle(
-                fontSize: 15,
+          //内容
+          Offstage(
+            offstage: contentvisible,
+            child: Container(
+              // color: Colors.red,
+              alignment:Alignment.bottomLeft,
+              // height: 20,
+
+              // padding: EdgeInsets.symmetric(vertical: 30.0),
+              // height: 100.0,
+              // color: Colors.white,
+              child:
+              // TextView(
+              //   onTextViewCreated: _onTextViewCreated,
+              // ),
+
+              Text(
+                contentPath,
+                textAlign:TextAlign.left,
+                style: TextStyle(
+                  // fontSize: 15,
+                  color: Colors.black54,
+                ),
+                maxLines: 6, //最大行数
+                // textScaleFactor: 0.5, //字体缩放
               ),
             ),
           ),
 
           // 图片内容
          Offstage(
-           offstage: visible,
+           offstage: imgvisible,
            child:  Container(
                height: 110.0,
                margin: EdgeInsets.only(top: 10),
@@ -769,8 +811,12 @@ class _CopywritingState extends State<Copywriting> with SingleTickerProviderStat
     );
   }
 
+
 }
 
+void _onTextViewCreated(TextViewController controller) {
+  controller.setText('Hello from Android!');
+}
 
 //阻止listview回弹颜色效果
 class CusBehavior extends ScrollBehavior {

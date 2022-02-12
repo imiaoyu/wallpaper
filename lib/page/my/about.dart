@@ -300,8 +300,8 @@ class _aboutState extends State<about> with SingleTickerProviderStateMixin {
                       //   ],
                       // ),
                       Container(
-                        height: 50,
-                        margin: EdgeInsets.only(top: height/20),
+                        height: 40,
+                        margin: EdgeInsets.only(top: height/25),
                         child: InkWell(
                           onTap: (){
                             // SQToast.show('已是最新版');
@@ -313,7 +313,7 @@ class _aboutState extends State<about> with SingleTickerProviderStateMixin {
                               height: 50,
                               padding: EdgeInsets.all(10),
                               child: Center(
-                                child: Text('获取新版本',
+                                child: Text('更新',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w600
@@ -323,14 +323,31 @@ class _aboutState extends State<about> with SingleTickerProviderStateMixin {
                           ),
                         )
                       ),
-
                       Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text('内侧小分队：979677614',
+                        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(top: 10),
+                              child: Text('  用户协议',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black45,
                                 ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 10),
+                              child: Text('隐私政策  ',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black45,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       )
 

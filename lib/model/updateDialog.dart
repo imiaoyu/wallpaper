@@ -128,7 +128,7 @@ class UpdateDialog extends Dialog {
 
   Widget button(){
     return Container(
-      width: 250,
+      width: 180,
       height: 40,
       margin: EdgeInsets.only(bottom: 15),
       child: RaisedButton(
@@ -137,7 +137,7 @@ class UpdateDialog extends Dialog {
           child: Text(
             '立即更新',
             style:
-            TextStyle(fontSize: 20, color: Colors.white),
+            TextStyle(fontSize: 18, color: Colors.white),
           ),
           onPressed: () {
             // ToastUtil.showTips('下载apk');

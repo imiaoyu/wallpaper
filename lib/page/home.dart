@@ -11,6 +11,7 @@ import 'package:test/http/http_url.dart';
 import 'package:test/model/toast.dart';
 import 'package:test/page/copywriting.dart';
 import 'package:test/page/fications.dart';
+import 'package:test/page/home/special.dart';
 import 'package:test/page/images.dart';
 import 'full_screenimagepage.dart';
 import 'package:test/http/entity.dart';
@@ -145,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 50,
-                                  fontFamily: 'Roboto-Black',
+                                  // fontFamily: 'Roboto-Black',
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -155,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
-                                  fontFamily: 'Roboto-Black',
+                                  // fontFamily: 'Roboto-Black',
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -322,7 +323,14 @@ class _HomePageState extends State<HomePage> {
                             Spacer(flex: 1,),
                             InkWell(
                               onTap: (){
-                                SQToast.show('等待开放');
+                                Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                    builder: (context) {
+                                      return new Special();
+                                    },
+                                  ),
+                                );
                               },
                               // color: Colors.pink,
                               child: Column(
@@ -584,14 +592,15 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   InkWell(
                                     onTap:(){
-                                      Navigator.push(
-                                        context,
-                                        new MaterialPageRoute(
-                                          builder: (context) {
-                                            return new Images_view(image_list: list_item,title_bar:'全部专题',image_list_count:list_itemCount);
-                                          },
-                                        ),
-                                      );
+                                      SQToast.show('暂无');
+                                      // Navigator.push(
+                                      //   context,
+                                      //   new MaterialPageRoute(
+                                      //     builder: (context) {
+                                      //       return new Images_view(image_list: list_item,title_bar:'全部话题',image_list_count:list_itemCount);
+                                      //     },
+                                      //   ),
+                                      // );
                                     },
                                     child: Row(
                                       children: <Widget>[
@@ -764,7 +773,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  //精选专题 widget
+  //精选话题 widget
   Widget ImagesListCards(index) {
     String imgPath = index.img;
     String namePath = index.title;

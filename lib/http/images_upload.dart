@@ -60,8 +60,8 @@ class Results extends Object {
   @JsonKey(name: 'uid')
   int uid;
 
-  @JsonKey(name: 'flag')
-  String flag;
+  @JsonKey(name: 'fileflag')
+  String fileflag;
 
   @JsonKey(name: 'resolution')
   String resolution;
@@ -81,7 +81,7 @@ class Results extends Object {
   @JsonKey(name: 'rank')
   String rank;
 
-  Results(this.id,this.fileName,this.uploadTime,this.size,this.download,this.uid,this.flag,this.resolution,this.img,this.preview,this.favs,this.tag,this.rank,);
+  Results(this.id,this.fileName,this.uploadTime,this.size,this.download,this.uid,this.fileflag,this.resolution,this.img,this.preview,this.favs,this.tag,this.rank,);
 
   factory Results.fromJson(Map<String, dynamic> srcJson) => _$ResultsFromJson(srcJson);
 
